@@ -1,12 +1,12 @@
-#summary One-sentence summary of this page.
+#labels Featured
+#Level, gamma and curve adjustment for images.
 
 = Introduction =
 
-Add your content here.
+Written in Flex 3, here is a standard level, gamma adjustment along with curve for RGB channels.
 
 
 = Details =
-
 
 This is functional but not yet version 1. Complete features as follows:
 1) white point, black point and gamma adjustments in level.
