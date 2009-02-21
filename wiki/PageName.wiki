@@ -1,0 +1,20 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+
+This is functional but not yet version 1. Complete features as follows:
+1) white point, black point and gamma adjustments in level.
+2) cubic spline for curve adjustments.
+3) Red, green and blue channels working.
+4) preview functionality.
+5) open/close UI.
+
+Things to do before version 1.
+1) refactor code to follow MVC architecture.
+2) set alpha channel as well.
