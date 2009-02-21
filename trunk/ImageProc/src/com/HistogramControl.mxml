@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas 	xmlns:mx="http://www.adobe.com/2006/mxml" 
+			width="266" height="130"
+			horizontalScrollPolicy="off"
+			verticalScrollPolicy="off">
+	
+	<mx:Script>
+		<![CDATA[
+			
+			protected var bmpHist:BitmapData;
+			
+			[Bindable] private var histR:HistTable;
+			[Bindable] private var histG:HistTable;
+			[Bindable] private var histB:HistTable;
+			[Bindable] private var histV:HistTable;
+			[Bindable] private var histA:HistTable;
+			
+			protected var CHANNEL_RANGE:int = 256;
+			protected var channel:String = "RGB";
+			
+			// --------------------------------------------------------------------------
+			public function onMouseOverHist(e:MouseEvent):void 
+			// --------------------------------------------------------------------------
+			{
+				var lut:HistTable = getHistLUT();
+				
+				lblIndex.text = (e.localX-1).toString();
+				lblCount.text = Number(lut.getCount(e.localX)).toString();
+			}
+			
+			// --------------------------------------------------------------------------
+			public function set colorChannel(channel:String):void 
+			// --------------------------------------------------------------------------
+			{
+				this.channel = channel;
+			}
+			
+			// --------------------------------------------------------------------------
+			public function getHistLUT():HistTable 
+			// --------------------------------------------------------------------------
+			{
+				switch(channel) {
+					case "RGB":
+					return histV;
+					
+					case "Red":
+					return histR;
+					
+					case "Green":
+					return histG;
+					
+					case "Blue":
+					return histB;
+					
+					case "Alpha":
+					return histA;
+				}
+				return null;
+			}
+			
+			// --------------------------------------------------------------------------
+			public function set bitmap(bmpSrc:BitmapData):void 
+			// --------------------------------------------------------------------------
+			{
+				histR = new HistTable(0, CHANNEL_RANGE);
+				histG = new HistTable(0, CHANNEL_RANGE);
+				histB = new HistTable(0, CHANNEL_RANGE);
+				histV = new HistTable(0, CHANNEL_RANGE);
+				histA = new HistTable(0, CHANNEL_RANGE);
+
+				for ( var y:int=0; y<bmpSrc.height; y++) {
+					for ( var x:int=0; x<bmpSrc.width; x++) {
+						var clr:uint = bmpSrc.getPixel32(x,y);
+						var r:int = (clr & 0xFF0000) >> (8*2);
+						var g:int = (clr & 0x00FF00) >> 8;
+						var b:int =  clr & 0x0000FF;
+						var a:int = (clr & 0xFF000000) >> (8*3);
+						//var v:int = calValue(r,g,b);
+						// NTSC luminosity ratio
+						var v:int = int(.2126 * Number(r) + .7152 * Number(g) + .0722 * Number(b));
+						histR.increment(r);
+						histG.increment(g);
+						histB.increment(b);
+						histV.increment(v);
+						histA.increment(a);						
+					}
+				}
+			}
+			
+			// --------------------------------------------------------------------------
+			protected function calValue(r:int, g:int, b:int):int 
+			// --------------------------------------------------------------------------
+			{
+				if ( r < g )
+		   		{
+		   			return ( r < b ) ? r : b;
+		   		}
+		   		else if ( g < b )
+		   		{
+		   			return ( g < r ) ? g : r;
+		   		}	
+		   		return b;		
+			}
+			
+			// --------------------------------------------------------------------------
+			public function drawHistogram(lut:HistTable, clr:uint):void 
+			// --------------------------------------------------------------------------
+			{
+				var bmpHist:BitmapData = new BitmapData(256, 100, false, 0xFFFFFF);
+//				var maxHeight:Number = Point(mode).y;
+//				
+//				var mean:int = int(lut.Mean);
+//				var mode:int = Point(lut.Mode).x;
+//				var median:int = lut.Median;
+//				
+				for ( var i:int=lut.StartPos; i<lut.EndPos; i++) {
+//					var clrStat:int = (mean == i)? 0xFFFF00 :
+//								  	  (mode == i)? 0x00FFFF :
+//								  	  (median == i)? 0xFF00FF : clr;
+						
+					var heigth:int = int(Number(lut.getCount(i)) / maxHeight * 100);	
+					bmpHist.fillRect(new Rectangle(i, 100-heigth, 1, heigth), clr);
+				}
+				imgHist.source = new Bitmap(bmpHist);
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:VBox borderColor="gray" borderStyle="solid" borderThickness="1">
+		<mx:HBox>
+			<mx:Label text="X:" fontSize="8"/>
+			<mx:Label id="lblIndex" fontSize="8"/>
+			<mx:Label text="Y:" fontSize="8"/>
+			<mx:Label id="lblCount" fontSize="8"/>
+		</mx:HBox>
+		<mx:Image id="imgHist" width="256" height="100" mouseMove="onMouseOverHist(event)"/>
+	</mx:VBox>
+</mx:Canvas>
