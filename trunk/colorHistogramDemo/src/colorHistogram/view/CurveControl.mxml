@@ -53,6 +53,7 @@
 			import colorHistogram.com.CumHist;
 			import flash.geom.Point;
 			
+			protected var sound:Sound;
 			protected const CHANNEL_MAX:int = 255;
 			protected const CHANNEL_RANGE:int = 256;
 			
@@ -92,6 +93,7 @@
 				interpolateBLU = new Interpolate(bounds);
 				interpolateRGB = new Interpolate(bounds);
 				interpolateALP = new Interpolate(bounds);
+				sound = new Sound(new URLRequest("http://www.ctyeung.com/flex/ColorHistogramDemo/assets/slideDoor.mp3"));
 			}
 			
 			// --------------------------------------------------------------------------
@@ -157,6 +159,7 @@
 						0xFF00FF00;
 			}
 			
+			private var firstTime:Boolean=true;
 			// --------------------------------------------------------------------------
 			public function onMove(InOut:String):void {
 			// --------------------------------------------------------------------------	
@@ -171,6 +174,10 @@
 					moveOut.play();
 					break;
 				}
+				if(firstTime)
+					firstTime = false;
+				else
+					sound.play();
 			}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -313,8 +320,8 @@
 			}
 		]]>
 	</mx:Script>
-	<mx:Move id="moveOut" target="{this}" xFrom="-257" xTo="10" duration="2000"/>
-	<mx:Move id="moveIn" target="{this}" xFrom="10" xTo="-257" duration="2000"/>
+	<mx:Move id="moveOut" target="{this}" xFrom="-257" xTo="10" duration="1700"/>
+	<mx:Move id="moveIn" target="{this}" xFrom="10" xTo="-257" duration="1700"/>
 	
 	<mx:VBox borderColor="gray" borderStyle="solid" borderThickness="1">
 		<mx:Image id="imgCumHist" width="256" height="256"/>
