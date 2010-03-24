@@ -96,6 +96,15 @@ package colorHistogram.com {
 			return true;
 		}
 		
+		public function setValue(index:int,
+								 count:int)
+								 :Boolean  {
+			if(!table) return false;
+			
+			table[index] = count;	
+			return true;			 	
+		}
+		
 		// --------------------------------------------------------------------------
 		public function decrement (index:int):Boolean 
 		// --------------------------------------------------------------------------

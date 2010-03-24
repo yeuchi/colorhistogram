@@ -88,24 +88,29 @@
 			protected var autoSetting:String = "";
 			protected var histProcessor:HistogramProcessor;
 			protected var slideCtrl:Array;
+			protected var sound:Sound;
 			
 			// --------------------------------------------------------------------------
 			public function onCreationComplete():void 
 			// --------------------------------------------------------------------------
 			{
-				cmbChoices = new Array ("RGB", "Red", "Green", "Blue", "Alpha");
-				moveIn.end();
-				moveIn.play();
-				curveCtrl.onMove("IN");
-				boxControls.visible=false;
+				init();
+			}	
 			
+			protected function init():void {
+				cmbChoices = new Array ("RGB", "Red", "Green", "Blue", "Alpha");
+				
+				
 				var bmpControls:BitmapData = new BitmapData(256, 20, false, 0xFFFFFF);
 				bmpControls.fillRect(new Rectangle(0, 10, TRACK_MAX, 1), 0x00);
 				imgControls.source = new Bitmap(bmpControls);
 				
 				histProcessor = new HistogramProcessor();
-			}	
-
+				sound = new Sound(new URLRequest("http://www.ctyeung.com/flex/ColorHistogramDemo/assets/drawBridgeEdit.mp3"));
+				boxControls.visible=false;
+				curveCtrl.onMove("IN");
+			}
+			
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // properties
 
@@ -166,7 +171,15 @@
 				onClickHist();
 			}
 			
+			private var firstTime:Boolean = true;
 			private function onClickIcon():void {
+				if(firstTime) {
+					boxControls.y = -300;
+					firstTime = false;
+				}
+				if(sound)
+					sound.play();
+					
 				boxControls.visible=true;
 				
 				if ( boxControls.y == -300 ) {
@@ -438,12 +451,12 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Move id="moveOut" target="{boxControls}" yFrom="-300" yTo="30" duration="2000" effectEnd="onEffectEnd()"/>
-	<mx:Move id="moveIn" target="{boxControls}" yFrom="30" yTo="-300" duration="2000"/>
+	<mx:Move id="moveOut" target="{boxControls}" yFrom="-300" yTo="30" duration="3000" effectEnd="onEffectEnd()"/>
+	<mx:Move id="moveIn" target="{boxControls}" yFrom="30" yTo="-300" duration="3000"/>
 	
 	<mx:VBox height="300" horizontalScrollPolicy="off" verticalScrollPolicy="off">	
 <!-- Histogram control panel -->
-		<mx:HBox id="boxControls" backgroundColor="0xFFFFFF"
+		<mx:HBox id="boxControls" y="-300" backgroundColor="0xFFFFFF"
 				 paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" height="100%">
 			<mx:VBox id="boxHist" height="100%">
 				<view:HistogramControl id="histCtrl"/>

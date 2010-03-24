@@ -93,13 +93,11 @@ package colorHistogram.com {
 	 	}
 	 	
 	 	public function autoQuarterPts():Boolean {
-	 		
 	 		return true;
 	 	}
 	 	
 	 	public function autoLinearize():Boolean {
 	 		return true;
 	 	}
-								 
 	}
 }
