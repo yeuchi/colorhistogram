@@ -1,0 +1,29 @@
+/* 
+    Document   : default
+    Created on : Jul 27, 2012, 10:35:53 AM
+    Author     : ctyeung
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+   display: block;
+}
+
+.divView {max-width: 750px; margin-left: auto; margin-right: auto; background-color: #FFF;}
+.divContent{display: block; width: 100%}
+.divImgSrc {display: inline-block; float: left; position: relative; border: 1px solid #000; padding: 5px 5px 5px 5px;}
+.divInfo {display: inline-block; float: right; position: relative; width: 300px;}
+
+.divControls {display: block; width: 100%}
+
+.divPath{display: inline-block; float: left; position: relative; }
+.divOps{display: inline-block; float: right; position: relative; }
+
+p .txtInfo {margin: 10px 10px 10px 10px; }
+
+#combo {margin: 15px;}
+
+.txtPathSrc {margin: 15px; }
+.btn:hover {opacity: .8; cursor: pointer;}
+.btn{display: inline-block; float: left; position: relative; border: 1px solid #000; background-color: #0F0; padding: 5px 5px 5px 5px; margin: 10px 10px 10px 10px;}

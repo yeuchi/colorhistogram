@@ -1,0 +1,3 @@
+{
+    "info"     :   "<p class='txtIntro'>This is an exercise in Object Oriented Javascript (OOJ) and Model-View-Controller (MVC) framework for image tone reproduction.  Select controls below to choose an image and operation, histogram or curve.</p>"
+}
