@@ -1,0 +1,31 @@
+<%-- 
+    Document   : index
+    Created on : Jul 27, 2012, 10:00:38 AM
+    Author     : ctyeung
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Tone Reproduction</title>   
+   </head>
+   <body></body>
+   
+   <!-- jQuery library -->	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+	<!-- overlay -->
+	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+	<!-- iPad drag n drop -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
+   
+   <script src="event/eventDispatch.js"></script>
+   <script src="model/modelEnum.js"></script>
+   <script src="model/model.js"></script>
+   <script src="view/appView.js"></script>
+   <script src="controller/controller.js"></script>
+   <script src="fascade.js"></script>
+</html>
