@@ -32,9 +32,20 @@ AppView.prototype._onViewLoaded = function() {
 }
 
 AppView.prototype._onChangeImage = function() {
-   dispatchEvent(EVENT_CHANGE_IMAGE);
+   dispatchEvent(EVENT_COMBO_IMAGE);
    var url = $("#combo").val();
    $(".imgSrc").attr("src", url);
+   
+   /*
+   var imgObj = new Image();
+		imgObj.onload = function(){
+			var canvasSrc = document.getElementById("myPixels");
+			var contextSrc = canvasSrc.getContext("2d");
+			contextSrc.drawImage(this, 0,0);
+		};
+	 	imgObj.src = "http://www.ctyeung.com/JQuery/Rotate3D/thumb2.jpg";
+      
+      */
 }
 
 AppView.prototype._onBtnAdjust = function() {
