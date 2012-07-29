@@ -16,10 +16,7 @@
    <!-- jQuery library -->	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-	<!-- overlay -->
-	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
-
-	<!-- iPad drag n drop -->
+	<!-- drag n drop -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
    
    <script src="event/eventDispatch.js"></script>
