@@ -16,40 +16,53 @@ AppView.prototype._init = function() {
    $("body").load("view/appView.html", this._onViewLoaded);
 }
 
+// load image into canvas, model
+AppView.prototype.loadImage = function(filePath) {
+   var imgObj = new Image();
+   imgObj.onload = function(){
+      // init data 
+      model.initImage("myCanvas");
+      model.context.drawImage(this, 0,0);
+      dispatchEvent(EVENT_IMAGE_LOAD_COMPLETE);                // build my histogram now ?
+   };
+   imgObj.src = filePath;
+}
+
 /********** event handlers *********************/
 
 // init 
 AppView.prototype._onViewLoaded = function() {
 
-   // event listeners 
-   
-   $(".btnAdjust").bind("click", appView._onBtnAdjust);
+   // event listeners    
+   $(".btnHistogram").bind("click", appView._onBtnHistogram);
+   $(".btnCumulative").bind("click", appView._onBtnCumulative);
    $(".btnRevert").bind("click", appView._onBtnRevert);
    $(".btnToggle").bind("click", appView._onBtnToggle);
    $("#combo").bind("change", appView._onChangeImage);
    
    appView.loadInfo("assets/intro.json");
+   model.imageUrl = "assets/images/BillnMarc.JPG";
+   appView.loadImage(model.imageUrl);
 }
 
 AppView.prototype._onChangeImage = function() {
+   model.imageUrl = $("#combo").val();
+   appView.loadImage(model.imageUrl);
    dispatchEvent(EVENT_COMBO_IMAGE);
-   var url = $("#combo").val();
-   $(".imgSrc").attr("src", url);
-   
-   /*
-   var imgObj = new Image();
-		imgObj.onload = function(){
-			var canvasSrc = document.getElementById("myPixels");
-			var contextSrc = canvasSrc.getContext("2d");
-			contextSrc.drawImage(this, 0,0);
-		};
-	 	imgObj.src = "http://www.ctyeung.com/JQuery/Rotate3D/thumb2.jpg";
-      
-      */
 }
 
-AppView.prototype._onBtnAdjust = function() {
-   dispatchEvent(EVENT_BUTTON_ADJUST);
+AppView.prototype._onBtnHistogram = function() {
+   $(".divDialog").load();
+   
+   model.changeState(this.modelEnum.STATE_HISTOGRAM);
+   dispatchEvent(EVENT_BUTTON_HISTOGRAM);                      // go build my histogram !
+}
+
+AppView.prototype._onBtnCumulative = function() {
+   $(".divDialog").load();
+   
+   model.changeState(this.modelEnum.STATE_CUMULATIVE);
+   dispatchEvent(EVENT_BUTTON_CUMULATIVE);                     // go build my cumulative histogram !
 }
 
 AppView.prototype._onBtnRevert = function() {
@@ -58,15 +71,6 @@ AppView.prototype._onBtnRevert = function() {
 
 AppView.prototype._onBtnToggle = function() {
    dispatchEvent(EVENT_BUTTON_TOGGLE);
-}
-
-
-AppView.prototype._onRenderedDivHistogram = function() {
-   
-}
-
-AppView.prototype._onRenderedDivCumulative = function() {
-   
 }
 
 
@@ -79,14 +83,20 @@ AppView.prototype.loadInfo = function(filePath) {
 
 // application state change
 AppView.prototype.onStateChange = function() {
-   
-   this.render();
-   
+   switch(model.state){
+      case this.modelEnum.STATE_IMAGE_MODIFIED:
+         this.render();
+         break;
+         
+      default:
+   }
 }
 
 AppView.prototype.render = function() {
    if(this.state != model.STATE) {
   
+      this._renderImageDes();
+      
       switch(model.state) {
          case this.modelEnum.STATE_HISTOGRAM:
             $(".divHistogram").load("view/histogram/histogram.html",_onRenderedDivHistogram);
@@ -96,9 +106,20 @@ AppView.prototype.render = function() {
             $(".divHistogram").load("view/cumulative/cumulative.html",_onRenderedDivCumulative);
             break;
       }         
-      
    }
 }
 
+AppView.prototype._renderImageDes = function () {
+   model.contextDes.clearRect(0,0,model.imageWidth, model.imageHeight);
+   model.contextDes.putImageData(model.dataDes, 0, 0);
+}
+
+AppView.prototype._onRenderedDivHistogram = function() {
+   
+}
+
+AppView.prototype._onRenderedDivCumulative = function() {
+   
+}
 
 

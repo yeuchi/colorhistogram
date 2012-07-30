@@ -21,6 +21,7 @@
    
    <script src="event/eventDispatch.js"></script>
    <script src="model/modelEnum.js"></script>
+   <script src="model/imageData.js"></script>
    <script src="model/model.js"></script>
    <script src="view/appView.js"></script>
    <script src="controller/controller.js"></script>

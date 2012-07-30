@@ -10,10 +10,12 @@ and open the template in the editor.
    <!-- content area (top) -->
    <div class="divContent">
       <!-- image area (left) -->
-      <div class="divImgSrc">
-         <img class="imgSrc" src="assets/images/BillnMarc.JPG"/>
+      <div class="divImage">
+         <canvas id="myCanvas" width="400" height="256">
+            HTML5 canvas failed to load.
+         </canvas>
       </div>
-      
+ 
       <!-- tutorial, credit, reference (right) -->
       <div class="divInfo">     
       </div>
@@ -35,9 +37,12 @@ and open the template in the editor.
       
       <!-- operations (right) -->
       <div class="divOps">
-         <a class="btn btnAdjust">Adjust</a>
+         <a class="btn btnHistogram">Histogram</a>
+         <a class="btn btnCumulative">Cumulative</a>
          <a class="btn btnRevert">Revert</a>
          <a class="btn btnToggle">Toggle</a>
       </div>
    </div>
+   
+   <div class="divDialog"></div>
 </div>
