@@ -6,10 +6,13 @@
 
 var EVENT_MAIN_MODEL_LOADED = "onEventLoadMainModel";
 
+var EVENT_IMAGE_LOAD_COMPLETE = "onEventImageLoadComplete";
 var EVENT_BUTTON_REVERT = "onEventButtonRevert";
 var EVENT_COMBO_IMAGE = "onEventComboImage";
-var EVENT_BUTTON_ADJUST = "onEventButtonAdjust";
+var EVENT_BUTTON_HISTOGRAM = "onEventButtonHistogram";
+var EVENT_BUTTON_CUMULATIVE = "onEventButtonCumulative";
 var EVENT_BUTTON_TOGGLE = "onEventButonToggle";
+
 
 // function to dispatch event !
 var dispatchEvent = function(eventType) {
