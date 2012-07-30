@@ -52,17 +52,11 @@ AppView.prototype._onChangeImage = function() {
 }
 
 AppView.prototype._onBtnHistogram = function() {
-   $(".divDialog").load();
-   
-   model.changeState(this.modelEnum.STATE_HISTOGRAM);
-   dispatchEvent(EVENT_BUTTON_HISTOGRAM);                      // go build my histogram !
+   $(".divDialog").load("view/histogram/histogram.html",this._onRenderedDivHistogram);
 }
 
 AppView.prototype._onBtnCumulative = function() {
-   $(".divDialog").load();
-   
-   model.changeState(this.modelEnum.STATE_CUMULATIVE);
-   dispatchEvent(EVENT_BUTTON_CUMULATIVE);                     // go build my cumulative histogram !
+   $(".divDialog").load("view/cumulative/cumulative.html",this._onRenderedDivCumulative);
 }
 
 AppView.prototype._onBtnRevert = function() {
@@ -95,17 +89,7 @@ AppView.prototype.onStateChange = function() {
 AppView.prototype.render = function() {
    if(this.state != model.STATE) {
   
-      this._renderImageDes();
-      
-      switch(model.state) {
-         case this.modelEnum.STATE_HISTOGRAM:
-            $(".divHistogram").load("view/histogram/histogram.html",_onRenderedDivHistogram);
-            break;
-            
-         case this.modelEnum.STATE_CUMULATIVE:
-            $(".divHistogram").load("view/cumulative/cumulative.html",_onRenderedDivCumulative);
-            break;
-      }         
+      this._renderImageDes();    
    }
 }
 
@@ -115,11 +99,11 @@ AppView.prototype._renderImageDes = function () {
 }
 
 AppView.prototype._onRenderedDivHistogram = function() {
-   
+   dispatchEvent(EVENT_BUTTON_HISTOGRAM);                      // go build my histogram !
 }
 
 AppView.prototype._onRenderedDivCumulative = function() {
-   
+   dispatchEvent(EVENT_BUTTON_CUMULATIVE);                     // go build my cumulative histogram !
 }
 
 
