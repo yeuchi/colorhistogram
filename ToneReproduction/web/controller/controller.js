@@ -13,7 +13,6 @@ Controller.prototype.init = function() {
 
 Controller.prototype.buildHistogram = function() {
    model.initHistogram();
-   
    for (var y=0; y<model.imageHeight; y++) {
 		var i = y*model.imageWidth*4;			
 		for(var x=0; x<model.imageWidth; x++) {
