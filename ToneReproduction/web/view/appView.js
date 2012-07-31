@@ -52,11 +52,11 @@ AppView.prototype._onChangeImage = function() {
 }
 
 AppView.prototype._onBtnHistogram = function() {
-   $(".divDialog").load("view/histogram/histogram.html",this._onRenderedDivHistogram);
+   $(".divDialog").load("view/histogramGraph/histogram.html",this._onRenderedDivHistogram);
 }
 
 AppView.prototype._onBtnCumulative = function() {
-   $(".divDialog").load("view/cumulative/cumulative.html",this._onRenderedDivCumulative);
+   $(".divDialog").load("view/cumulativeGraph/cumulative.html",this._onRenderedDivCumulative);
 }
 
 AppView.prototype._onBtnRevert = function() {
