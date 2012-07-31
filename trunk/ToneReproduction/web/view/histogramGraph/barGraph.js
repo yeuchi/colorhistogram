@@ -30,7 +30,7 @@ BarGraph.prototype.render = function() {
    var max = info.max;
  
    for(var i=0; i<modelEnum.HISTOGRAM_LENGTH; i++) {
-      var bar = document.createElement("div");
+      var bar = document.createElement("a");
       $(bar).addClass("bar");
       var h = parseInt(info.histogram[i] / max * 100)
       var t = 100 - h;
