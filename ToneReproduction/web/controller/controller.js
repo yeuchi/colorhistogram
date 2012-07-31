@@ -19,7 +19,7 @@ Controller.prototype.buildHistogram = function() {
 		var i = y*model.imageWidth()*4;			
 		for(var x=0; x<model.imageWidth(); x++) {
          for(var c=0; c<this.modelEnum.NUM_CHANNELS; c++)
-            this.upCount(c, model.listInfo[c]);
+            this.upCount(i++, model.listInfo[c]);
       }
    }
 

@@ -16,8 +16,7 @@ var Model = function() {
 
 Model.prototype.initHistogram = function() {
    this.listInfo = [];
-   var red = new ChannelInfo(this._modelEnum.CHANNEL_RED);
-   this.listInfo.push(red);
+   this.listInfo.push(new ChannelInfo(this._modelEnum.CHANNEL_RED));
    this.listInfo.push(new ChannelInfo(this._modelEnum.CHANNEL_GREEN));
    this.listInfo.push(new ChannelInfo(this._modelEnum.CHANNEL_BLUE));
    this.listInfo.push(new ChannelInfo(this._modelEnum.CHANNEL_ALPHA));
