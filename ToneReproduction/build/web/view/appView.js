@@ -22,8 +22,8 @@ AppView.prototype.loadImage = function(filePath) {
    var imgObj = new Image();
    imgObj.onload = function(){
       // init data 
-      model.initImage("myCanvas");
-      model.context.drawImage(this, 0,0);
+      model.initImage("myCanvas", this);
+      
       dispatchEvent(EVENT_IMAGE_LOAD_COMPLETE);                // build my histogram now ?
    };
    imgObj.src = filePath;

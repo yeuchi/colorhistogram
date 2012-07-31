@@ -4,17 +4,17 @@
  */
 
 var BarGraph = function() {
+   
+   
+   // set controls movable
+   $(".slider").draggable();
+   
    this.init();
 }
 
 BarGraph.prototype.init = function() {
-   $(".slider").draggable({
-            drag: function( event, ui ) {
-               var slider = arguments[1].draggable;
-               $(slider).css("top", 0);
-            }
-   });
-   
+
+   // bind event listeners
    $(".btnHighLight").bind("mouseup", this.onChangeHighLight);
    $(".btnMidTone").bind("mouseup", this.onChangeMidTone);
    $(".btnShadow").bind("mouseup", this.onChangeShadow);
@@ -25,7 +25,28 @@ BarGraph.prototype.init = function() {
 }
 
 BarGraph.prototype.render = function() {
+    
+   var info = model.getChannelInfo(modelEnum.CHANNEL_GREEN);
    
+   if(info.histogram&&
+      info.histogram.length==modelEnum.HISTOGRAM_LENGTH) {
+      
+      for(var i=0; i<1; i++) {
+         alert("i "+i.toString() + " h " + h.toString() + " t " + t.toString());
+         
+         var h = parseInt(parsefloat(info.histogram[i]) / parsefloat(info.max));
+         var t = 100 - h;
+         
+         
+         var bar = document.createElement("div");
+         $(bar).addClass("bar");
+         $(bar).css({"top": t+"px", "left":i+"px", "width":"1px", "height": h+"px"});
+         $(".divBarGraph").append(bar);
+         
+      }
+   }
+   else
+      alert("yikes!");
 }
 
 /************** event handler ************************/
