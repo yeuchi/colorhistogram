@@ -24,6 +24,10 @@ BarGraph.prototype.init = function() {
    $(".txtShadow").bind("change", this.onTextShadow);
 }
 
+BarGraph.prototype.render = function() {
+   
+}
+
 /************** event handler ************************/
 BarGraph.prototype.onChangeHighLight = function() {
    var value = slideBound(".btnHighLight");

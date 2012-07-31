@@ -10,11 +10,14 @@ var Model = function() {
    this.state = this._modelEnum.STATE_INIT;
    
    this.modelEnum = new ModelEnum();
+   this.initHistogram();
+}
+
+Model.prototype.initHistogram = function() {
    this.histogramR = [];                        // array of 256 entries (8 bit channel)
    this.histogramG = [];
    this.histogramB = [];
-   
-   
+   this.histogramA = [];  
 }
 
 // application state change
