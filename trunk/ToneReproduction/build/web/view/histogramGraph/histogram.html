@@ -2,27 +2,52 @@
 To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
-<link rel="stylesheet" href="view/histogramGraph/histogram.css" />
-<div class="divDialog divHistogram">
+<div class="divDialog">
+   <link rel="stylesheet" href="view/histogramGraph/histogram.css" />
    
-   
-   <div class="divGraphContainer">
-      <div class="divBarGraph"></div>
-      <div class="divBtnValues">
-         <input type="text" maxlength="5" size="5" id="txtHighlight" value="255" />
-         <input type="text" maxlength="5" size="5" id="txtMidTone" value="127" />
-         <input type="text" maxlength="5" size="5" id="txtShadow" value="0" />
+   <div class="divHistogram">
+      <div class="divGraphContainer">
+         <div class="divBarGraph"></div>
+         
+         <div style="clear:both;"></div>
+         
+         <div class="divSliders">
+            <a class="slider btnHighLight"></a>
+            <a class="slider btnMidTone"></a>
+            <a class="slider btnShadow"></a>
+         </div>
+         
+         <div style="clear:both;"></div>
+         
+         <div class="divBtnValues">
+            <div class="divInput">
+               <a class="name">S:</a>
+               <input type="text" maxlength="5" size="5" id="txtHighlight" value="255" />
+            </div>
+            <div class="divInput">
+               <a class="name">M:</a>
+               <input type="text" maxlength="5" size="5" id="txtMidTone" value="127" />
+            </div>
+            <div class="divInput">
+               <a class="name">H:</a>
+               <input type="text" maxlength="5" size="5" id="txtShadow" value="0" />
+            </div>
+         </div>
       </div>
-      
-      <a class="btn btnHighLight"></a>
-      <a class="btn btnMidTone"></a>
-      <a class="btn btnShadow"></a>
+
+      <div class="divControl">
+         <div>
+            <a class="btn btnOK">OK</a>
+         </div>
+         
+         <div style="clear:both;"></div>
+         
+         <div>
+            <a class="btn btnClear">Clear</a>
+         </div>
+      </div>
+
+      <script src="view/histogramGraph/barGraph.js"></script>
+      <script src="view/histogramGraph/histogram.js"></script>
    </div>
-   
-   <div class="divControl">
-      <a class="btn btnOK">OK</a>
-   </div>
-      
-   <script src="view/histogramGraph/barGraph.js"></script>
-   <script src="view/histogramGraph/histogram.js"></script>
 </div>

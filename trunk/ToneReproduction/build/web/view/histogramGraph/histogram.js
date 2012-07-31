@@ -6,6 +6,9 @@
 $(document).ready(function() {
    
    var barGraph = new BarGraph();
+   
+   $(".divHistogram").draggable();
+   $(".slider").draggable();
 });
 
 
