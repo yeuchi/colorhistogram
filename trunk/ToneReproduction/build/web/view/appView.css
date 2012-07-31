@@ -26,6 +26,6 @@ p .txtInfo {margin: 10px 10px 10px 10px; }
 
 .txtPathSrc {margin: 15px; }
 .btn:hover {opacity: .8; cursor: pointer;}
-.btn{display: inline-block; float: left; width: 80px; position: relative; border-radius: 10px; border: 1px solid #000; background-color: #0F0; padding: 5px 5px 5px 5px; margin: 10px 10px 10px 10px;}
+.btn{display: inline-block; float: left; width: 80px; position: relative; border-radius: 10px; border: 1px solid #000; background-color: #AFA; padding: 5px 5px 5px 5px; margin: 10px 10px 10px 10px;}
 
 .divDialog {position: absolute; display: block; top: 0px;}
