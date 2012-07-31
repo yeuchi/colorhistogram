@@ -11,6 +11,8 @@ var Model = function() {
    
    this.modelEnum = new ModelEnum();
    this.initHistogram();
+   
+   return(model)?model:model=this;
 }
 
 Model.prototype.initHistogram = function() {

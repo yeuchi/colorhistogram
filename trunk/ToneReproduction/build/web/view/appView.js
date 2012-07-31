@@ -7,6 +7,7 @@ var appView;
 var AppView = function() {
    
    this._init();
+   return(appView)?appView:appView=this;
 }
 
 AppView.prototype._init = function() {
