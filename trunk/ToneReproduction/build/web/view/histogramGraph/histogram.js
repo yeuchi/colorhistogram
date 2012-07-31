@@ -6,9 +6,7 @@
 $(document).ready(function() {
    
    var barGraph = new BarGraph();
-   
-   $(".divHistogram").draggable();
-   $(".slider").draggable();
+   var dlgControl = new DialogControl();
 });
 
 

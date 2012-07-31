@@ -34,4 +34,5 @@ input {display: inline; padding: 0px 5px 5px 5px;}
 
 
 .divGraphContainer, .divControl {position: relative; display: inline-block; float: left;}
-.btnOK, .btnClear {width: 70px;}
+.btnOK, .btnCancel {width: 70px;}
+.btnCancel {margin: 5px 10px 5px 10px;}

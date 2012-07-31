@@ -13,6 +13,8 @@ var EVENT_BUTTON_HISTOGRAM = "onEventButtonHistogram";
 var EVENT_BUTTON_CUMULATIVE = "onEventButtonCumulative";
 var EVENT_BUTTON_TOGGLE = "onEventButonToggle";
 
+var EVENT_BUTTON_HISTOGRAM_OK = "onEventButtonHistogramOk";
+var EVENT_BUTTON_HISTOGRAM_CANCEL = "onEventButtonHistogramCancel";
 
 // function to dispatch event !
 var dispatchEvent = function(eventType) {
