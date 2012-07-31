@@ -25,28 +25,18 @@ BarGraph.prototype.init = function() {
 }
 
 BarGraph.prototype.render = function() {
-    
-   var info = model.getChannelInfo(modelEnum.CHANNEL_GREEN);
    
-   if(info.histogram&&
-      info.histogram.length==modelEnum.HISTOGRAM_LENGTH) {
-      
-      for(var i=0; i<1; i++) {
-         alert("i "+i.toString() + " h " + h.toString() + " t " + t.toString());
-         
-         var h = parseInt(parsefloat(info.histogram[i]) / parsefloat(info.max));
-         var t = 100 - h;
-         
-         
-         var bar = document.createElement("div");
-         $(bar).addClass("bar");
-         $(bar).css({"top": t+"px", "left":i+"px", "width":"1px", "height": h+"px"});
-         $(".divBarGraph").append(bar);
-         
-      }
+   var info = model.getChannelInfo(modelEnum.CHANNEL_GREEN);
+   var max = info.max;
+ 
+   for(var i=0; i<modelEnum.HISTOGRAM_LENGTH; i++) {
+      var bar = document.createElement("div");
+      $(bar).addClass("bar");
+      var h = parseInt(info.histogram[i] / max * 100)
+      var t = 100 - h;
+      $(bar).css({"top":t+"px", "left": "0px", "width": "1px", "height": h+"px"});
+      $(".divBarGraph").append(bar);  
    }
-   else
-      alert("yikes!");
 }
 
 /************** event handler ************************/

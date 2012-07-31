@@ -41,7 +41,7 @@ AppView.prototype._onViewLoaded = function() {
    $(".btnToggle").bind("click", appView._onBtnToggle);
    $("#combo").bind("change", appView._onChangeImage);
    
-   appView.loadInfo("assets/intro.json");
+   //appView.loadInfo("assets/intro.json");
    model.imageUrl = "assets/images/BillnMarc.JPG";
    appView.loadImage(model.imageUrl);
 }
