@@ -84,7 +84,7 @@ AppView.prototype.onStateChange = function() {
       case this.modelEnum.STATE_HISTOGRAM_BLUE:
       case this.modelEnum.STATE_HISTOGRAM_ALPHA:
       case this.modelEnum.STATE_HISTOGRAM_GRAY:
-         $(".divDialog").load("view/histogramGraph/histogram.html",this._onRenderedDivHistogram);
+         $(".divDialog").load("view/histogramGraph/histogram.html");
          break;
       
       case this.modelEnum.STATE_CUMULATIVE_RED:
@@ -92,7 +92,7 @@ AppView.prototype.onStateChange = function() {
       case this.modelEnum.STATE_CUMULATIVE_BLUE:
       case this.modelEnum.STATE_CUMULATIVE_ALPHA:
       case this.modelEnum.STATE_CUMULATIVE_GRAY:
-         $(".divDialog").load("view/cumulativeGraph/cumulative.html",this._onRenderedDivCumulative);
+         $(".divDialog").load("view/cumulativeGraph/cumulative.html");
          break;
       default:
    }
@@ -110,10 +110,5 @@ AppView.prototype._renderImageDes = function () {
    model.contextDes.putImageData(model.dataDes, 0, 0);
 }
 
-AppView.prototype._onRenderedDivHistogram = function() {
-}
-
-AppView.prototype._onRenderedDivCumulative = function() {
-}
 
 

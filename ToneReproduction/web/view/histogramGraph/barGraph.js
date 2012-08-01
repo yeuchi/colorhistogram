@@ -6,6 +6,20 @@ var BarGraph = function() {
    this.init();
 }
 
+BarGraph.prototype.dispose = function() {
+   this.init = null;
+   this.render = null;
+   this.getColor = null;
+   this.onChangeHighLight = null;
+   this.onChangeMidTone = null;
+   this.onChangeShadow = null;
+   this.onTextHighlight = null;
+   this.onTextMidTone = null;
+   this.onTextShadow = null;
+   slideBound = null;
+   txtBound = null;
+}
+
 BarGraph.prototype.init = function() {
 
    // bind event listeners
@@ -19,13 +33,14 @@ BarGraph.prototype.init = function() {
 }
 
 BarGraph.prototype.render = function() {
+   $(".divBarGraph a").remove();
    
    var info = model.getSelectedChannelInfo();
    var max = info.max;
    var color = this.getColor();
  
    for(var i=0; i<modelEnum.HISTOGRAM_LENGTH; i++) {
-      var bar = document.createElement("div");
+      var bar = document.createElement("a");
       $(bar).addClass("bar");
       $(bar).addClass(color);
       
