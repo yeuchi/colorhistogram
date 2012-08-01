@@ -35,6 +35,14 @@ input {display: inline; padding: 0px 5px 5px 5px;}
 
 .divGraphContainer, .divControl {position: relative; display: inline-block; float: left;}
 .btnOK, .btnCancel {width: 70px;}
-.btnCancel {margin: 5px 10px 5px 10px;}
+.btnOK {margin-top: 10px;}
+.btnCancel {margin: 5px 5px 5px 5px;}
 
-.bar {position:relative; float: left; display: inline-block; background-color: #0F0;}
+.bar {position:relative; float: left; display: inline-block;}
+.colorR {background-color: #F00;}
+.colorG {background-color: #0F0;}
+.colorB {background-color: #00F;}
+.colorA {background-color: #888;}
+.colorG {background-color: #000;}
+
+#comboChannel {margin: 5px 5px 5px 5px; width: 80px;}

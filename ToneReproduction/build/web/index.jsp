@@ -19,7 +19,8 @@
 	<!-- drag n drop -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
    
-   <script src="event/eventDispatch.js"></script>
+   <script src="view/histogramGraph/histogramEvents.js"></script>
+   <script src="eventDispatch.js"></script>
    <script src="model/modelEnum.js"></script>
    <script src="model/channelInfo.js"></script>
    <script src="model/model.js"></script>
