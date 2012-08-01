@@ -1,7 +1,3 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 var appView;
 var AppView = function() {
@@ -29,6 +25,10 @@ AppView.prototype.loadImage = function(filePath) {
    imgObj.src = filePath;
 }
 
+AppView.prototype.clear = function() {
+   $(".divDialog div").remove();
+}
+
 /********** event handlers *********************/
 
 // init 
@@ -38,7 +38,6 @@ AppView.prototype._onViewLoaded = function() {
    $(".btnHistogram").bind("click", appView._onBtnHistogram);
    $(".btnCumulative").bind("click", appView._onBtnCumulative);
    $(".btnRevert").bind("click", appView._onBtnRevert);
-   $(".btnToggle").bind("click", appView._onBtnToggle);
    $("#combo").bind("change", appView._onChangeImage);
    
    //appView.loadInfo("assets/intro.json");
@@ -53,21 +52,18 @@ AppView.prototype._onChangeImage = function() {
 }
 
 AppView.prototype._onBtnHistogram = function() {
-   $(".divDialog").load("view/histogramGraph/histogram.html",this._onRenderedDivHistogram);
+  appView.clear();
+  dispatchEvent(EVENT_BUTTON_HISTOGRAM);
 }
 
 AppView.prototype._onBtnCumulative = function() {
-   $(".divDialog").load("view/cumulativeGraph/cumulative.html",this._onRenderedDivCumulative);
+  appView.clear();
+  dispatchEvent(EVENT_BUTTON_CUMULATIVE); 
 }
 
 AppView.prototype._onBtnRevert = function() {
    dispatchEvent(EVENT_BUTTON_REVERT);
 }
-
-AppView.prototype._onBtnToggle = function() {
-   dispatchEvent(EVENT_BUTTON_TOGGLE);
-}
-
 
 AppView.prototype.loadInfo = function(filePath) {
    $.getJSON(filePath, function(data){
@@ -83,6 +79,21 @@ AppView.prototype.onStateChange = function() {
          this.render();
          break;
          
+      case this.modelEnum.STATE_HISTOGRAM_RED:
+      case this.modelEnum.STATE_HISTOGRAM_GREEN:
+      case this.modelEnum.STATE_HISTOGRAM_BLUE:
+      case this.modelEnum.STATE_HISTOGRAM_ALPHA:
+      case this.modelEnum.STATE_HISTOGRAM_GRAY:
+         $(".divDialog").load("view/histogramGraph/histogram.html",this._onRenderedDivHistogram);
+         break;
+      
+      case this.modelEnum.STATE_CUMULATIVE_RED:
+      case this.modelEnum.STATE_CUMULATIVE_GREEN:
+      case this.modelEnum.STATE_CUMULATIVE_BLUE:
+      case this.modelEnum.STATE_CUMULATIVE_ALPHA:
+      case this.modelEnum.STATE_CUMULATIVE_GRAY:
+         $(".divDialog").load("view/cumulativeGraph/cumulative.html",this._onRenderedDivCumulative);
+         break;
       default:
    }
 }
@@ -100,11 +111,9 @@ AppView.prototype._renderImageDes = function () {
 }
 
 AppView.prototype._onRenderedDivHistogram = function() {
-   dispatchEvent(EVENT_BUTTON_HISTOGRAM);                      // go build my histogram !
 }
 
 AppView.prototype._onRenderedDivCumulative = function() {
-   dispatchEvent(EVENT_BUTTON_CUMULATIVE);                     // go build my cumulative histogram !
 }
 
 

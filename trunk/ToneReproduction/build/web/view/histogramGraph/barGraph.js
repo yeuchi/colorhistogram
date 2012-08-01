@@ -1,11 +1,5 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 var BarGraph = function() {
-   
-   
    // set controls movable
    $(".slider").draggable();
    
@@ -26,16 +20,40 @@ BarGraph.prototype.init = function() {
 
 BarGraph.prototype.render = function() {
    
-   var info = model.getChannelInfo(modelEnum.CHANNEL_GREEN);
+   var info = model.getSelectedChannelInfo();
    var max = info.max;
+   var color = this.getColor();
  
    for(var i=0; i<modelEnum.HISTOGRAM_LENGTH; i++) {
-      var bar = document.createElement("a");
+      var bar = document.createElement("div");
       $(bar).addClass("bar");
-      var h = parseInt(info.histogram[i] / max * 100)
+      $(bar).addClass(color);
+      
+      var h = parseInt(info.histogram[i] / max * 100);
+      h = (h>0)?h:1;
       var t = 100 - h;
       $(bar).css({"top":t+"px", "left": "0px", "width": "1px", "height": h+"px"});
       $(".divBarGraph").append(bar);  
+   }
+}
+
+BarGraph.prototype.getColor = function() {
+   switch(model.state) {
+      case modelEnum.STATE_HISTOGRAM_RED:
+         return "colorR";
+         
+      case modelEnum.STATE_HISTOGRAM_GREEN:
+         return "colorG";
+         
+      case modelEnum.STATE_HISTOGRAM_BLUE:
+         return "colorB";
+         
+      case modelEnum.STATE_HISTOGRAM_ALPHA:
+         return "colorA";
+         
+      default:
+      case modelEnum.STATE_HISTOGRAM_GRAY:
+         return "colorG";
    }
 }
 
