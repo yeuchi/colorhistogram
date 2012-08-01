@@ -1,8 +1,3 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 var DialogControl = function() {
    $(".divHistogram").draggable();
    this.init();
@@ -11,8 +6,7 @@ var DialogControl = function() {
 DialogControl.prototype.init = function() {
    $(".btnOK").bind("click", this.onHistogramOk)
    $(".btnCancel").bind("click", this.onHistogramCancel);  
-   $("#comboChannel").bind("change", this.onChangeChannel);
-   
+
    this.initCombo();
 }
 
@@ -40,26 +34,39 @@ DialogControl.prototype.initCombo = function() {
          list[modelEnum.INDEX_GRAY].selected = true;
          break;
    }
+   
+   $("#comboChannel").bind("change", this.onChangeChannel);
 }
 
 DialogControl.prototype.dispose = function() {
+   this.init = null;
+   this.initCombo = null;
+   this.onChangeChannel = null;
+   
    this.onHistogramCancel = null;
    this.onHistogramOk = null;
+   
+   getChangeChannelEvent = null;
 }
    
 DialogControl.prototype.onHistogramOk = function() {
    dispatchEvent(EVENT_BUTTON_HISTOGRAM_OK);
+   this.dispose();
    $(".divDialog div").remove();
 }
    
 DialogControl.prototype.onHistogramCancel = function() {
    dispatchEvent(EVENT_BUTTON_HISTOGRAM_CANCEL);
+   this.dispose();
    $(".divDialog div").remove();
+   
 }
 
 DialogControl.prototype.onChangeChannel = function() {  
    var event = getChangeChannelEvent();
    dispatchEvent(event);
+   this.dispose();
+   $(".divDialog div").remove();
 }
 
 var getChangeChannelEvent = function() {
