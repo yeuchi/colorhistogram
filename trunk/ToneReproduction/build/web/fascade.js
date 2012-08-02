@@ -45,6 +45,10 @@ $(document).ready(function() {
       // perform equalization
    }
    
+   var onSliderHistogramHighlight = function(event) {
+      controller.modifyHighlight(event.pos);
+   }
+   
    /* cumulative - curve commands */
    var onButtonCumulative = function() {
       
@@ -64,6 +68,7 @@ $(document).ready(function() {
    $(document).bind(EVENT_HISTOGRAM_COMBO_ALPHA, onButtonHistogramAlpha);
    $(document).bind(EVENT_HISTOGRAM_COMBO_GRAY, onButtonHistogramGray);
    $(document).bind(EVENT_HISTOGRAM_BUTTON_EQUALIZE, onButtonHistogramEqualize);
+   $(document).bind(EVENT_HISTOGRAM_CHANGE_HIGHLIGHT, onSliderHistogramHighlight);
    
    /* cumulative - curve events */
    $(document).bind(EVENT_BUTTON_CUMULATIVE, onButtonCumulative);

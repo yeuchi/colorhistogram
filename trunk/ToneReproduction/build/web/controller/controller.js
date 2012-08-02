@@ -17,6 +17,11 @@ Controller.prototype.init = function() {
    this.modelEnum = new ModelEnum();
 }
 
+// change highlight value
+Controller.prototype.modifyHighlight = function(value) {
+   
+}
+
 Controller.prototype.buildHistogram = function(index) {
    // create a local copy of use global copy in model ?
    model.initHistogram();
@@ -32,11 +37,10 @@ Controller.prototype.buildHistogram = function(index) {
    }
 
    // construct statistics
+   this.findStat(model.listInfo[index]);
    this.findShadow(model.listInfo[index]);
    this.findHighlight(model.listInfo[index]);
-   this.findStat(model.listInfo[index]);
-
-   
+ 
    model.changeState(this.declareHistogramState(index)); 
 }
 
@@ -82,18 +86,28 @@ Controller.prototype.upCount = function(index, info) {
 }
 
 Controller.prototype.findShadow = function(info) {
+   // for histogram equalization, base of standard deviation.
+   // find 3 * varience as shadow.
+   var var3 = model.imageHeight()*model.imageWidth() * .001;
+   var count = 0;
    for(var m=0; m<this.modelEnum.HISTOGRAM_LENGTH; m++) {
-      if(info.histogram[m]>0) {
-         info.shadow = m;
+      count += info.histogram[m];
+      if(count>var3) {
+         info.minVar = m;
          return;
       }
    }
 }
 
 Controller.prototype.findHighlight = function(info) {
+   // for histogram equalization, base of standard deviation.
+   // find 3 * varience as shadow.
+   var var3 = model.imageHeight()*model.imageWidth() * .001;
+   var count = 0;
    for(var m=this.modelEnum.HISTOGRAM_LENGTH-1; m>=0; m--) {
-      if(info.histogram[m]>0) {
-         info.highlight = m;
+      count += info.histogram[m];
+      if(count>var3) {
+         info.maxVar = m;
          return;
       }
    }

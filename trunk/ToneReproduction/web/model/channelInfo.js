@@ -12,11 +12,16 @@ var ChannelInfo = function(color) {
 ChannelInfo.prototype.init = function() {
    this.initHistogram();
    
-   this.shadow = -1;                      // histogram index of shadow
-   this.highlight = -1;                   // histogram index of highlight
+   // adjustable parameters
+   this.shadow = 0;                       // histogram index of shadow
+   this.highlight = 255;                  // histogram index of highlight
+   this.gamma = 1.0;                      // contrast - gamma curve 
+   
+   // statistics collected from image
    this.mode = -1;                        // histogram index of mode (most count)
    this.median = -1;                      // histogram index of median (middle of the population)
-   
+   this.minVar = -1;                      // 3variance from normal distribution .1% of data
+   this.maxVar = -1;
    this.max = -1;                         // histogram maximum count at mode 
 }
 
