@@ -1,7 +1,7 @@
 
 var BarGraph = function() {
    // set controls movable
-   $(".btnHighLight").draggable();
+   $(".slider").draggable();
    this.init();
 }
 
@@ -90,7 +90,6 @@ BarGraph.prototype.onChangeHighLight = function() {
    
    var event = jQuery.Event(EVENT_HISTOGRAM_CHANGE_HIGHLIGHT);
    event.pos = value;
-
    dispatchEvent(event);
 }
 
@@ -98,28 +97,35 @@ BarGraph.prototype.onChangeGamma = function() {
    var value = slideBound(".btnGamma");   
    var v = value/255*2;
    $("#txtGamma").val(v);
+   
+   var event = jQuery.Event(EVENT_HISTOGRAM_CHANGE_GAMMA);
+   event.pos = value;
+   dispatchEvent(event);
 }
 
 BarGraph.prototype.onChangeShadow = function() {
    var value = slideBound(".btnShadow");
    $("#txtShadow").val(value);
-   dispatchEvent(EVENT_HISTOGRAM_CHANGE_SHADOW);
+   
+   var event = jQuery.Event(EVENT_HISTOGRAM_CHANGE_SHADOW);
+   event.pos = value;
+   dispatchEvent(event);
 }
 
 BarGraph.prototype.onTextHighlight = function() {
    var value = txtBound("#txtHighlight");
-   $(".btnHighLight").css("left", value);
+   $(".btnHighLight").css("left", parseInt(value)+"px");
 }
 
 BarGraph.prototype.onTextGamma = function() {
    var value = txtBound("#txtGamma");
    var v = parseInt(value / 2 * 255);
-   $(".btnGamma").css("left", v);
+   $(".btnGamma").css("left", v+"px");
 }
 
 BarGraph.prototype.onTextShadow = function() {
    var value = txtBound("#txtShadow");
-   $(".btnShadow").css("left", value);
+   $(".btnShadow").css("left", parseInt(value)+"px");
 }
 
 var slideBound = function(slideId){
@@ -140,7 +146,7 @@ var slideBound = function(slideId){
 }
 
 var txtBound = function(txtId) {
-   var value = parseInt($(txtId).val());
+   var value = parseFloat($(txtId).val());
    if(value<0){
       $(txtId).val(0);
       return 0;
