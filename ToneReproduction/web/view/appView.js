@@ -84,6 +84,7 @@ AppView.prototype.onStateChange = function() {
       case this.modelEnum.STATE_HISTOGRAM_BLUE:
       case this.modelEnum.STATE_HISTOGRAM_ALPHA:
       case this.modelEnum.STATE_HISTOGRAM_GRAY:
+         $(".divDialog div").remove();
          $(".divDialog").load("view/histogramGraph/histogram.html");
          break;
       
@@ -92,6 +93,7 @@ AppView.prototype.onStateChange = function() {
       case this.modelEnum.STATE_CUMULATIVE_BLUE:
       case this.modelEnum.STATE_CUMULATIVE_ALPHA:
       case this.modelEnum.STATE_CUMULATIVE_GRAY:
+         $(".divDialog div").remove();
          $(".divDialog").load("view/cumulativeGraph/cumulative.html");
          break;
       default:

@@ -11,10 +11,10 @@ BarGraph.prototype.dispose = function() {
    this.render = null;
    this.getColor = null;
    this.onChangeHighLight = null;
-   this.onChangeMidTone = null;
+   this.onChangeGama = null;
    this.onChangeShadow = null;
    this.onTextHighlight = null;
-   this.onTextMidTone = null;
+   this.onTextGama = null;
    this.onTextShadow = null;
    slideBound = null;
    txtBound = null;
@@ -24,11 +24,11 @@ BarGraph.prototype.init = function() {
 
    // bind event listeners
    $(".btnHighLight").bind("mouseup", this.onChangeHighLight);
-   $(".btnMidTone").bind("mouseup", this.onChangeMidTone);
+   $(".btnGama").bind("mouseup", this.onChangeGama);
    $(".btnShadow").bind("mouseup", this.onChangeShadow);
    
    $(".txtHighlight").bind("change", this.onTextHighlight);
-   $(".txtMidTone").bind("change", this.onTextMidTone);
+   $(".txtGama").bind("change", this.onTextGama);
    $(".txtShadow").bind("change", this.onTextShadow);
 }
 
@@ -42,10 +42,13 @@ BarGraph.prototype.render = function() {
    for(var i=0; i<modelEnum.HISTOGRAM_LENGTH; i++) {
       var bar = document.createElement("a");
       $(bar).addClass("bar");
-      $(bar).addClass(color);
-      
+
       var h = parseInt(info.histogram[i] / max * 100);
-      h = (h>0)?h:1;
+      if(null==h||0==h) 
+         h = 1;
+      else
+         $(bar).addClass(color);
+      
       var t = 100 - h;
       $(bar).css({"top":t+"px", "left": "0px", "width": "1px", "height": h+"px"});
       $(".divBarGraph").append(bar);  
@@ -78,9 +81,12 @@ BarGraph.prototype.onChangeHighLight = function() {
    $("#txtHighlight").val(value);
 }
 
-BarGraph.prototype.onChangeMidTone = function() {
-   var value = slideBound(".btnMidTone");
-   $("#txtMidTone").val(value);
+BarGraph.prototype.onChangeGama = function() {
+   var value = slideBound(".btnGama");
+   
+   var v = value/modelEnum.HISTOGRAM_LENGTH;
+   
+   $("#txtGama").val(value);
 }
 
 BarGraph.prototype.onChangeShadow = function() {
@@ -93,9 +99,9 @@ BarGraph.prototype.onTextHighlight = function() {
    $(".btnHighLight").css("left", value);
 }
 
-BarGraph.prototype.onTextMidTone = function() {
-   var value = txtBound("#txtMidTone");
-   $(".btnMidTone").css("left", value);
+BarGraph.prototype.onTextGama = function() {
+   var value = txtBound("#txtGama");
+   $(".btnGama").css("left", value);
 }
 
 BarGraph.prototype.onTextShadow = function() {

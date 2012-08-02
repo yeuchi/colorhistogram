@@ -22,6 +22,9 @@ root {
 
 .divInput{margin: 0px 5px 3px 5px;}
 input {display: inline; padding: 0px 5px 5px 5px;}
+#txtShadow{margin-left: 5px;}
+#txtGama,
+#txtHighlight{margin-left: 20px;}
 
 /* them sliders */
 .slider {cursor: pointer; position: relative; float: left; display: inline-block;}
@@ -29,12 +32,12 @@ input {display: inline; padding: 0px 5px 5px 5px;}
 
 .divSliders {position: relative; display: block; float: left; height: 20px; width: 270px; margin: 2px 5px 5px 5px; border-top: 1px solid #000;}
 .btnShadow {background:url(../../assets/buttons/blk_small.png) no-repeat; width: 15px; height: 15px; position: absolute; display: block;}
-.btnMidTone {background:url(../../assets/buttons/gry_small.png) no-repeat; left: 127px; width: 15px; height: 15px; position: absolute; display: block;}
+.btnGama {background:url(../../assets/buttons/gry_small.png) no-repeat; left: 127px; width: 15px; height: 15px; position: absolute; display: block;}
 .btnHighLight {background:url(../../assets/buttons/wht_small.png) no-repeat; left:256px; width: 15px; height: 15px; position: absolute; display: block;}
 
 
 .divGraphContainer, .divControl {position: relative; display: inline-block; float: left;}
-.btnOK, .btnCancel {width: 70px;}
+.btnOK, .btnCancel, .btnAuto {width: 70px;}
 .btnOK {margin-top: 10px;}
 .btnCancel {margin: 5px 5px 5px 5px;}
 

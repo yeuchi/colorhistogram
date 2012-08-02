@@ -20,6 +20,7 @@ $(document).ready(function() {
       
    }
    
+   /* histogram commands */
    var onButtonHistogramRed = function() {
       controller.buildHistogram(modelEnum.INDEX_RED);
    }
@@ -40,6 +41,11 @@ $(document).ready(function() {
       controller.buildHistogram(modelEnum.INDEX_GRAY);
    }
    
+   var onButtonHistogramEqualize = function() {
+      // perform equalization
+   }
+   
+   /* cumulative - curve commands */
    var onButtonCumulative = function() {
       
    }
@@ -48,14 +54,19 @@ $(document).ready(function() {
 
    $(document).bind(EVENT_IMAGE_LOAD_COMPLETE, onImageLoadComplete);
    $(document).bind(EVENT_BUTTON_REVERT, onButtonRevert);
+   
+   /* histogram events */
+   $(document).bind(EVENT_BUTTON_HISTOGRAM, onButtonHistogramGray);
    $(document).bind(EVENT_BUTTON_HISTOGRAM, onButtonHistogramGray);
    $(document).bind(EVENT_HISTOGRAM_COMBO_RED, onButtonHistogramRed);
    $(document).bind(EVENT_HISTOGRAM_COMBO_GREEN, onButtonHistogramGreen);
    $(document).bind(EVENT_HISTOGRAM_COMBO_BLUE, onButtonHistogramBlue);
    $(document).bind(EVENT_HISTOGRAM_COMBO_ALPHA, onButtonHistogramAlpha);
    $(document).bind(EVENT_HISTOGRAM_COMBO_GRAY, onButtonHistogramGray);
-   $(document).bind(EVENT_BUTTON_HISTOGRAM, onButtonHistogramGray);
-   $(document).bind(EVENT_BUTTON_CUMULATIVE, onButtonCumulative);
+   $(document).bind(EVENT_HISTOGRAM_BUTTON_EQUALIZE, onButtonHistogramEqualize);
    
+   /* cumulative - curve events */
+   $(document).bind(EVENT_BUTTON_CUMULATIVE, onButtonCumulative);
+  
 });
 
