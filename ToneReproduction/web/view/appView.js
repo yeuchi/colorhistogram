@@ -39,7 +39,7 @@ AppView.prototype._onViewLoaded = function() {
    $(".btnCumulative").bind("click", appView._onBtnCumulative);
    $("#combo").bind("change", appView._onChangeImage);
    
-   //appView.loadInfo("assets/intro.json");
+   appView.loadInfo("assets/intro.json");
    model.imageUrl = "assets/images/BillnMarc.JPG";
    appView.loadImage(model.imageUrl);
 }
@@ -63,6 +63,7 @@ AppView.prototype._onBtnCumulative = function() {
 }
 
 AppView.prototype.loadInfo = function(filePath) {
+   $(".divInfo p").remove();
    $.getJSON(filePath, function(data){
       $(".divInfo").append(data.info);
     });
