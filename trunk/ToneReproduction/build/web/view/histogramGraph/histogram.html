@@ -7,34 +7,26 @@ and open the template in the editor.
    
    <div class="divHistogram">
       <div class="divGraphContainer">
-         <div class="divBarGraph">
-            <!--
-            <canvas id="canvasBar" width="256" height="100">
-            HTML5 canvas failed to load.
-         </canvas>-->
-         </div>
+         <div class="divBarGraph"></div>
          
          <div style="clear:both;"></div>
          
          <div class="divSliders">
-            <a class="slider btnHighLight"></a>
-            <a class="slider btnMidTone"></a>
             <a class="slider btnShadow"></a>
+            <a class="slider btnGama"></a>
+            <a class="slider btnHighLight"></a>
          </div>
          
          <div style="clear:both;"></div>
          
          <div class="divBtnValues">
             <div class="divInput">
-               <a class="name">S:</a>
                <input type="text" maxlength="5" size="5" id="txtShadow" value="0" />
             </div>
             <div class="divInput">
-               <a class="name">M:</a>
-               <input type="text" maxlength="5" size="5" id="txtMidTone" value="127" />
+               <input type="text" maxlength="5" size="5" id="txtGama" value="1" />
             </div>
             <div class="divInput">
-               <a class="name">H:</a>
                <input type="text" maxlength="5" size="5" id="txtHighlight" value="255" />
             </div>
          </div>
@@ -49,6 +41,12 @@ and open the template in the editor.
          
          <div>
             <a class="btn btnCancel">Cancel</a>
+         </div>
+         
+         <div style="clear:both;"></div>
+         
+         <div>
+            <a class="btn btnAuto">Equalize</a>
          </div>
          
          <div style="clear:both;"></div>

@@ -5,7 +5,8 @@ var DialogControl = function() {
 
 DialogControl.prototype.init = function() {
    $(".btnOK").bind("click", this.onHistogramOk)
-   $(".btnCancel").bind("click", this.onHistogramCancel);  
+   $(".btnCancel").bind("click", this.onHistogramCancel); 
+   $(".btnAuto").bind("click", this.onHistogramAuto);  
 
    this.initCombo();
 }
@@ -62,11 +63,15 @@ DialogControl.prototype.onHistogramCancel = function() {
    
 }
 
+DialogControl.prototype.onHistogramAuto = function() {
+   dispatchEvent(EVENT_HISTOGRAM_BUTTON_EQUALIZE);
+   this.dispose();   
+}
+
 DialogControl.prototype.onChangeChannel = function() {  
    var event = getChangeChannelEvent();
    dispatchEvent(event);
    this.dispose();
-   $(".divDialog div").remove();
 }
 
 var getChangeChannelEvent = function() {
