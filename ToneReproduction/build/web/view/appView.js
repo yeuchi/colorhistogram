@@ -37,7 +37,6 @@ AppView.prototype._onViewLoaded = function() {
    // event listeners    
    $(".btnHistogram").bind("click", appView._onBtnHistogram);
    $(".btnCumulative").bind("click", appView._onBtnCumulative);
-   $(".btnRevert").bind("click", appView._onBtnRevert);
    $("#combo").bind("change", appView._onChangeImage);
    
    //appView.loadInfo("assets/intro.json");
@@ -61,10 +60,6 @@ AppView.prototype._onBtnHistogram = function() {
 AppView.prototype._onBtnCumulative = function() {
   appView.clear();
   dispatchEvent(EVENT_BUTTON_CUMULATIVE); 
-}
-
-AppView.prototype._onBtnRevert = function() {
-   dispatchEvent(EVENT_BUTTON_REVERT);
 }
 
 AppView.prototype.loadInfo = function(filePath) {
