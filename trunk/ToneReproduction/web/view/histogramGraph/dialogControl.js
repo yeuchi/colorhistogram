@@ -49,13 +49,24 @@ DialogControl.prototype.dispose = function() {
    
    getChangeChannelEvent = null;
 }
+
+loadInfo = function(filePath) {
+   $(".divInfo p").remove();
+   $.getJSON(filePath, function(data){
+      $(".divInfo").append(data.info);
+   });
+}
    
 DialogControl.prototype.onHistogramOk = function() {
+   loadInfo("assets/thanks.json");
+   
    dispatchEvent(EVENT_BUTTON_HISTOGRAM_OK);
    $(".divDialog div").remove();
 }
    
 DialogControl.prototype.onHistogramCancel = function() {
+   loadInfo("assets/thanks.json");
+   
    dispatchEvent(EVENT_BUTTON_HISTOGRAM_CANCEL);
    $(".divDialog div").remove();
    
