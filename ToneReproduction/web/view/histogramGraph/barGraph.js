@@ -82,11 +82,9 @@ BarGraph.prototype.onChangeHighLight = function() {
 }
 
 BarGraph.prototype.onChangeGamma = function() {
-   var value = slideBound(".btnGamma");
-   
-   var v = value/modelEnum.HISTOGRAM_LENGTH;
-   
-   $("#txtGamma").val(value);
+   var value = slideBound(".btnGamma");   
+   var v = value/255*2;
+   $("#txtGamma").val(v);
 }
 
 BarGraph.prototype.onChangeShadow = function() {
@@ -101,7 +99,8 @@ BarGraph.prototype.onTextHighlight = function() {
 
 BarGraph.prototype.onTextGamma = function() {
    var value = txtBound("#txtGamma");
-   $(".btnGamma").css("left", value);
+   var v = parseInt(pos / 2 * 255);
+   $(".btnGamma").css("left", v);
 }
 
 BarGraph.prototype.onTextShadow = function() {
