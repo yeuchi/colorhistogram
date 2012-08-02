@@ -4,8 +4,8 @@ var DialogControl = function() {
 }
 
 DialogControl.prototype.init = function() {
-   $(".btnOK").bind("click", this.onHistogramOk)
-   $(".btnCancel").bind("click", this.onHistogramCancel); 
+   $(".btnOK").bind("click", {pointer: this}, this.onHistogramOk)
+   $(".btnCancel").bind("click", {pointer: this}, this.onHistogramCancel); 
    $(".btnAuto").bind("click", this.onHistogramAuto);  
 
    this.initCombo();
@@ -36,7 +36,7 @@ DialogControl.prototype.initCombo = function() {
          break;
    }
    
-   $("#comboChannel").bind("change", this.onChangeChannel);
+   $("#comboChannel").bind("change", {pointer: this}, this.onChangeChannel);
 }
 
 DialogControl.prototype.dispose = function() {
@@ -47,25 +47,27 @@ DialogControl.prototype.dispose = function() {
    this.onHistogramCancel = null;
    this.onHistogramOk = null;
    
-   getChangeChannelEvent = null;
+   this.getChangeChannelEvent = null;
 }
 
-loadInfo = function(filePath) {
+DialogControl.prototype.loadInfo = function(filePath) {
    $(".divInfo p").remove();
    $.getJSON(filePath, function(data){
       $(".divInfo").append(data.info);
    });
 }
    
-DialogControl.prototype.onHistogramOk = function() {
-   loadInfo("assets/thanks.json");
+DialogControl.prototype.onHistogramOk = function(event) {
+   var ptr = event.data.pointer;
+   ptr.loadInfo("assets/thanks.json");
    
    dispatchEvent(EVENT_BUTTON_HISTOGRAM_OK);
    $(".divDialog div").remove();
 }
    
-DialogControl.prototype.onHistogramCancel = function() {
-   loadInfo("assets/thanks.json");
+DialogControl.prototype.onHistogramCancel = function(event) {
+   var ptr = event.data.pointer;
+   ptr.loadInfo("assets/thanks.json");
    
    dispatchEvent(EVENT_BUTTON_HISTOGRAM_CANCEL);
    $(".divDialog div").remove();
@@ -77,13 +79,14 @@ DialogControl.prototype.onHistogramAuto = function() {
    this.dispose();   
 }
 
-DialogControl.prototype.onChangeChannel = function() {  
-   var event = getChangeChannelEvent();
+DialogControl.prototype.onChangeChannel = function(event) {  
+   var ptr = event.data.pointer;
+   var event = ptr.getChangeChannelEvent();
    dispatchEvent(event);
    this.dispose();
 }
 
-var getChangeChannelEvent = function() {
+DialogControl.prototype.getChangeChannelEvent = function() {
    var event = jQuery.Event(EVENT_HISTOGRAM_COMBO_CHANGE);
    switch($("#comboChannel").val())
    {
