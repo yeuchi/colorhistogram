@@ -15,7 +15,7 @@ BarGraph.prototype.dispose = function() {
    this.onTextHighlight = null;
    this.onTextGamma = null;
    this.onTextShadow = null;
-   slideBound = null;
+   this.slideBound = null;
    txtBound = null;
 }
 
@@ -31,9 +31,9 @@ BarGraph.prototype.init = function() {
    this.onTextShadow();
    
    // bind event listeners
-   $(".btnHighLight").bind("mouseup", this.onChangeHighLight);
-   $(".btnGamma").bind("mouseup", this.onChangeGamma);
-   $(".btnShadow").bind("mouseup", this.onChangeShadow);
+   $(".btnHighLight").bind("mouseup",{pointer:this}, this.onChangeHighLight);
+   $(".btnGamma").bind("mouseup",{pointer:this}, this.onChangeGamma);
+   $(".btnShadow").bind("mouseup",{pointer:this}, this.onChangeShadow);
    
    $("#txtHighlight").bind("change", this.onTextHighlight);
    $("#txtGamma").bind("change", this.onTextGamma);
@@ -84,8 +84,9 @@ BarGraph.prototype.getColor = function() {
 }
 
 /************** event handler ************************/
-BarGraph.prototype.onChangeHighLight = function() {
-   var value = slideBound(".btnHighLight");
+BarGraph.prototype.onChangeHighLight = function(event) {
+   var ptr = event.data.pointer;
+   var value = ptr.slideBound(".btnHighLight");
    $("#txtHighlight").val(value);
    
    var event = jQuery.Event(EVENT_HISTOGRAM_CHANGE_HIGHLIGHT);
@@ -93,8 +94,9 @@ BarGraph.prototype.onChangeHighLight = function() {
    dispatchEvent(event);
 }
 
-BarGraph.prototype.onChangeGamma = function() {
-   var value = slideBound(".btnGamma");   
+BarGraph.prototype.onChangeGamma = function(event) {
+   var ptr = event.data.pointer;
+   var value = ptr.slideBound(".btnGamma");   
    var v = value/255*2;
    $("#txtGamma").val(v);
    
@@ -103,8 +105,9 @@ BarGraph.prototype.onChangeGamma = function() {
    dispatchEvent(event);
 }
 
-BarGraph.prototype.onChangeShadow = function() {
-   var value = slideBound(".btnShadow");
+BarGraph.prototype.onChangeShadow = function(event) {
+   var ptr = event.data.pointer;
+   var value = ptr.slideBound(".btnShadow");
    $("#txtShadow").val(value);
    
    var event = jQuery.Event(EVENT_HISTOGRAM_CHANGE_SHADOW);
@@ -128,7 +131,7 @@ BarGraph.prototype.onTextShadow = function() {
    $(".btnShadow").css("left", parseInt(value)+"px");
 }
 
-var slideBound = function(slideId){
+BarGraph.prototype.slideBound = function(slideId){
    var pos = $(slideId).position();
    $(slideId).css("top", 0);
    

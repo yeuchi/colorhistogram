@@ -6,7 +6,7 @@ $(document).ready(function() {
    
    // not sure why we render 2x at initial.
    barGraph.render();                     // draw histogram
-   loadInfo("assets/histogram.json");
+   dlgControl.loadInfo("assets/histogram.json");
 });
 
 
