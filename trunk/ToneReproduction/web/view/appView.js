@@ -86,6 +86,8 @@ AppView.prototype.onStateChange = function() {
       case this.modelEnum.STATE_HISTOGRAM_BLUE:
       case this.modelEnum.STATE_HISTOGRAM_ALPHA:
       case this.modelEnum.STATE_HISTOGRAM_GRAY:
+         this.render();
+         
          $(".divDialog div").remove();
          $(".divDialog").load("view/histogramGraph/histogram.html");
          break;
@@ -103,15 +105,8 @@ AppView.prototype.onStateChange = function() {
 }
 
 AppView.prototype.render = function() {
-   if(this.state != model.STATE) {
-  
-      this._renderImageDes();    
-   }
-}
-
-AppView.prototype._renderImageDes = function () {
-   model.contextDes.clearRect(0,0,model.imageWidth, model.imageHeight);
-   model.contextDes.putImageData(model.dataDes, 0, 0);
+   model.context.clearRect(0,0,model.imageWidth(), model.imageHeight());
+   model.context.putImageData(model.dataDes, 0, 0);
 }
 
 
