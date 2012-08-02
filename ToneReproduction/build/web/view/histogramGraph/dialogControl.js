@@ -75,24 +75,30 @@ DialogControl.prototype.onChangeChannel = function() {
 }
 
 var getChangeChannelEvent = function() {
-   var eventValue = $("#comboChannel").val();
-   switch(eventValue) {
+   var event = jQuery.Event(EVENT_HISTOGRAM_COMBO_CHANGE);
+   switch($("#comboChannel").val())
+   {
       case modelEnum.CHANNEL_RED:
-         return EVENT_HISTOGRAM_COMBO_RED;
+         event.index = modelEnum.INDEX_RED;
+         break;
          
       case modelEnum.CHANNEL_GREEN:
-         return EVENT_HISTOGRAM_COMBO_GREEN;
+         event.index = modelEnum.INDEX_GREEN;
+         break;
          
       case modelEnum.CHANNEL_BLUE:
-         return EVENT_HISTOGRAM_COMBO_BLUE;
+         event.index = modelEnum.INDEX_BLUE;
+         break;
          
       case modelEnum.CHANNEL_ALPHA:
-         return EVENT_HISTOGRAM_COMBO_ALPHA;
-      
-      default:
+         event.index = modelEnum.INDEX_ALPHA;
+         break;
+         
       case modelEnum.CHANNEL_GRAY:
-         return EVENT_HISTOGRAM_COMBO_GRAY;
+         event.index = modelEnum.INDEX_GRAY;
+         break;
    }
+   return event;
 }
 
 

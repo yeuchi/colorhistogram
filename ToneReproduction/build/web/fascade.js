@@ -21,32 +21,24 @@ $(document).ready(function() {
    }
    
    /* histogram commands */
-   var onButtonHistogramRed = function() {
-      controller.buildHistogram(modelEnum.INDEX_RED);
-   }
-   
-   var onButtonHistogramGreen = function() {
-      controller.buildHistogram(modelEnum.INDEX_GREEN);
-   }
-   
-   var onButtonHistogramBlue = function() {
-      controller.buildHistogram(modelEnum.INDEX_BLUE);
-   }
-   
-   var onButtonHistogramAlpha = function() {
-      controller.buildHistogram(modelEnum.INDEX_ALPHA);
-   }
-   
-   var onButtonHistogramGray = function() {
-      controller.buildHistogram(modelEnum.INDEX_GRAY);
+   var onComboHistogram = function(event) {
+      controller.buildHistogram(event.index);
    }
    
    var onButtonHistogramEqualize = function() {
-      // perform equalization
+      controller.equalize();
    }
    
    var onSliderHistogramHighlight = function(event) {
       controller.modifyHighlight(event.pos);
+   }
+   
+   var onSliderHistogramShadow = function(event) {
+      controller.modifyShadow(event.pos);
+   }
+
+   var onSliderHistogramGamma = function(event) {
+      controller.modifyGamma(event.pos);
    }
    
    /* cumulative - curve commands */
@@ -60,13 +52,7 @@ $(document).ready(function() {
    $(document).bind(EVENT_BUTTON_REVERT, onButtonRevert);
    
    /* histogram events */
-   $(document).bind(EVENT_BUTTON_HISTOGRAM, onButtonHistogramGray);
-   $(document).bind(EVENT_BUTTON_HISTOGRAM, onButtonHistogramGray);
-   $(document).bind(EVENT_HISTOGRAM_COMBO_RED, onButtonHistogramRed);
-   $(document).bind(EVENT_HISTOGRAM_COMBO_GREEN, onButtonHistogramGreen);
-   $(document).bind(EVENT_HISTOGRAM_COMBO_BLUE, onButtonHistogramBlue);
-   $(document).bind(EVENT_HISTOGRAM_COMBO_ALPHA, onButtonHistogramAlpha);
-   $(document).bind(EVENT_HISTOGRAM_COMBO_GRAY, onButtonHistogramGray);
+   $(document).bind(EVENT_HISTOGRAM_COMBO_CHANGE, onComboHistogram);
    $(document).bind(EVENT_HISTOGRAM_BUTTON_EQUALIZE, onButtonHistogramEqualize);
    $(document).bind(EVENT_HISTOGRAM_CHANGE_HIGHLIGHT, onSliderHistogramHighlight);
    
