@@ -46,8 +46,7 @@ Controller.prototype.equalize = function() {
 }
 
 Controller.prototype.applyLUT = function(info) {
-   this.lut.init(info);
-   this.lut.apply(model.dataSrc, model.dataDes);
+   this.lut.apply(info, model.dataSrc, model.dataDes);
    model.changeState(model.state);                                               // post state change for view to consume
 }
 

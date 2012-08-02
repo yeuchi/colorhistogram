@@ -52,13 +52,11 @@ DialogControl.prototype.dispose = function() {
    
 DialogControl.prototype.onHistogramOk = function() {
    dispatchEvent(EVENT_BUTTON_HISTOGRAM_OK);
-   this.dispose();
    $(".divDialog div").remove();
 }
    
 DialogControl.prototype.onHistogramCancel = function() {
    dispatchEvent(EVENT_BUTTON_HISTOGRAM_CANCEL);
-   this.dispose();
    $(".divDialog div").remove();
    
 }

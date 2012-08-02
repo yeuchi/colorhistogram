@@ -1,8 +1,7 @@
 
 var BarGraph = function() {
    // set controls movable
-   $(".slider").draggable();
-   
+   $(".btnHighLight").draggable();
    this.init();
 }
 
