@@ -17,8 +17,8 @@ var EVENT_BUTTON_HISTOGRAM_OK = "onEventButtonHistogramOk";
 var EVENT_BUTTON_HISTOGRAM_CANCEL = "onEventButtonHistogramCancel";
 
 // function to dispatch event !
-var dispatchEvent = function(eventType) {
-    $(document).trigger(eventType);        
+var dispatchEvent = function(event) {
+    $(document).trigger(event);        
     /*  if we want to be a purist....
     var event = document.createEvent('UIEvents');
     event.initEvent(eventType, true, true);

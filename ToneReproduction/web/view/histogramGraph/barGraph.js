@@ -79,6 +79,11 @@ BarGraph.prototype.getColor = function() {
 BarGraph.prototype.onChangeHighLight = function() {
    var value = slideBound(".btnHighLight");
    $("#txtHighlight").val(value);
+   
+   var event = jQuery.Event(EVENT_HISTOGRAM_CHANGE_HIGHLIGHT);
+   event.pos = value;
+
+   dispatchEvent(event);
 }
 
 BarGraph.prototype.onChangeGamma = function() {
@@ -90,6 +95,7 @@ BarGraph.prototype.onChangeGamma = function() {
 BarGraph.prototype.onChangeShadow = function() {
    var value = slideBound(".btnShadow");
    $("#txtShadow").val(value);
+   dispatchEvent(EVENT_HISTOGRAM_CHANGE_SHADOW);
 }
 
 BarGraph.prototype.onTextHighlight = function() {
