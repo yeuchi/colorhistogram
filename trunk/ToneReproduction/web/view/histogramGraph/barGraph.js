@@ -11,10 +11,10 @@ BarGraph.prototype.dispose = function() {
    this.render = null;
    this.getColor = null;
    this.onChangeHighLight = null;
-   this.onChangeGama = null;
+   this.onChangeGamma = null;
    this.onChangeShadow = null;
    this.onTextHighlight = null;
-   this.onTextGama = null;
+   this.onTextGamma = null;
    this.onTextShadow = null;
    slideBound = null;
    txtBound = null;
@@ -24,11 +24,11 @@ BarGraph.prototype.init = function() {
 
    // bind event listeners
    $(".btnHighLight").bind("mouseup", this.onChangeHighLight);
-   $(".btnGama").bind("mouseup", this.onChangeGama);
+   $(".btnGamma").bind("mouseup", this.onChangeGamma);
    $(".btnShadow").bind("mouseup", this.onChangeShadow);
    
    $(".txtHighlight").bind("change", this.onTextHighlight);
-   $(".txtGama").bind("change", this.onTextGama);
+   $(".txtGamma").bind("change", this.onTextGamma);
    $(".txtShadow").bind("change", this.onTextShadow);
 }
 
@@ -81,12 +81,12 @@ BarGraph.prototype.onChangeHighLight = function() {
    $("#txtHighlight").val(value);
 }
 
-BarGraph.prototype.onChangeGama = function() {
-   var value = slideBound(".btnGama");
+BarGraph.prototype.onChangeGamma = function() {
+   var value = slideBound(".btnGamma");
    
    var v = value/modelEnum.HISTOGRAM_LENGTH;
    
-   $("#txtGama").val(value);
+   $("#txtGamma").val(value);
 }
 
 BarGraph.prototype.onChangeShadow = function() {
@@ -99,9 +99,9 @@ BarGraph.prototype.onTextHighlight = function() {
    $(".btnHighLight").css("left", value);
 }
 
-BarGraph.prototype.onTextGama = function() {
-   var value = txtBound("#txtGama");
-   $(".btnGama").css("left", value);
+BarGraph.prototype.onTextGamma = function() {
+   var value = txtBound("#txtGamma");
+   $(".btnGamma").css("left", value);
 }
 
 BarGraph.prototype.onTextShadow = function() {
