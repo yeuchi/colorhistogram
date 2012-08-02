@@ -53,7 +53,9 @@ AppView.prototype._onChangeImage = function() {
 
 AppView.prototype._onBtnHistogram = function() {
   appView.clear();
-  dispatchEvent(EVENT_BUTTON_HISTOGRAM);
+  var event = jQuery.Event(EVENT_HISTOGRAM_COMBO_CHANGE);
+  event.index = modelEnum.INDEX_GRAY;
+  dispatchEvent(event);
 }
 
 AppView.prototype._onBtnCumulative = function() {

@@ -5,13 +5,17 @@
 
 var model;
 var Model = function() {
+   this.init();  
+   return(model)?model:model=this;
+}
+
+Model.prototype.init = function() {
    this._modelEnum = new ModelEnum();
    this.imageUrl;
    this.state = this._modelEnum.STATE_INIT;
-   this.listInfo = [];
-   this.initHistogram();
    
-   return(model)?model:model=this;
+   this.listInfo = [];                                                  // list of channelInfo objects
+   this.initHistogram();
 }
 
 Model.prototype.initHistogram = function() {

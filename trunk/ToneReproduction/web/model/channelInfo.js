@@ -33,5 +33,22 @@ ChannelInfo.prototype.initHistogram = function() {
    }
 }
 
+ChannelInfo.prototype.pixelOffset = function() {
+   switch(this.channel) {
+      case this.modelEnum.CHANNEL_RED:
+      case this.modelEnum.CHANNEL_GRAY:
+         return this.modelEnum.INDEX_RED;
+         
+      case this.modelEnum.CHANNEL_GREEN:
+         return this.modelEnum.INDEX_GREEN;
+         
+      case this.modelEnum.CHANNEL_BLUE:
+         return this.modelEnum.INDEX_BLUE;
+         
+      case this.modelEnum.CHANNEL_ALPHA:
+         return this.modelEnum.INDEX_ALPHA;
+   }
+}
+
 
 

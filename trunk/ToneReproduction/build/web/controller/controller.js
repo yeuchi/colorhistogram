@@ -15,13 +15,43 @@ var Controller = function() {
 
 Controller.prototype.init = function() {
    this.modelEnum = new ModelEnum();
+   this.channelSelected = this.modelEnum.INDEX_GRAY;
 }
 
-// change highlight value
+/************* apply histogram change, shadow, gamma, highlight *************/
+Controller.prototype.modifyGamma = function(value) {
+   var info = model.getSelectedChannelInfo();
+   info.gamma = value; 
+   this.applyLUT(info);
+}
+
 Controller.prototype.modifyHighlight = function(value) {
-   
+   var info = model.getSelectedChannelInfo();
+   info.highlight = value;
+   this.applyLUT(info);
 }
 
+Controller.prototype.modifyShadow = function(value) {
+   var info = model.getSelectedChannelInfo();
+   info.shadow = value;
+   this.applyLUT(info);
+}
+
+Controller.prototype.equalize = function() {
+   var info = model.getSelectedChannelInfo();
+   info.shadow = info.minVar;
+   info.highlight = info.maxVar;
+   // dare I linearize the image ???
+   this.applyLUT(info);
+}
+
+Controller.prototype.applyLUT = function(info) {
+   var lut = new HistogramLUT(info);
+   lut.apply(model.dataSrc, model.dataDes);
+   model.changeState(model.state);                                               // post state change for view to consume
+}
+
+/************* collect image statistics, info *******************************/
 Controller.prototype.buildHistogram = function(index) {
    // create a local copy of use global copy in model ?
    model.initHistogram();
