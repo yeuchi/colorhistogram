@@ -39,13 +39,21 @@ HistogramLUT.prototype.init = function(info) {
 // make them private, stick them in constructor
 HistogramLUT.prototype.gamma = function() {
    if(1!=this.info.gamma) {
-  
+      var denom = Math.pow(255, this.info.gamma);
+      
+      for(var i=0; i<this.modelEnum.HISTOGRAM_LENGTH; i++) {
+         var numerator = Math.pow(this.lut[i], this.info.gamma);
+         var num = numerator/denom*255
+         this.lut[i] = this.bound(num);
+      }
    }
 }
 
 HistogramLUT.prototype.shadow = function() {
    if(0<this.info.shadow) {
-      
+      var multiplier = (255-this.info.shadow)/255;
+      for(var i=0; i<this.modelEnum.HISTOGRAM_LENGTH; i++)
+         this.lut[i] = this.bound(this.lut[i]*multiplier+this.info.shadow);
    }
 }
 
@@ -59,6 +67,15 @@ HistogramLUT.prototype.highlight = function() {
 
 HistogramLUT.prototype.ceiling = function(value) {
    return (value>255)?255:value;
+}
+
+HistogramLUT.prototype.bound = function(value) {
+   if(value<0)
+      value = 0;
+   else if (value>255)
+      value = 255;
+   
+   return value;
 }
 
 

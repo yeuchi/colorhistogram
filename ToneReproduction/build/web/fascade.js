@@ -55,6 +55,8 @@ $(document).ready(function() {
    $(document).bind(EVENT_HISTOGRAM_COMBO_CHANGE, onComboHistogram);
    $(document).bind(EVENT_HISTOGRAM_BUTTON_EQUALIZE, onButtonHistogramEqualize);
    $(document).bind(EVENT_HISTOGRAM_CHANGE_HIGHLIGHT, onSliderHistogramHighlight);
+   $(document).bind(EVENT_HISTOGRAM_CHANGE_GAMMA, onSliderHistogramGamma);
+   $(document).bind(EVENT_HISTOGRAM_CHANGE_SHADOW, onSliderHistogramShadow);
    
    /* cumulative - curve events */
    $(document).bind(EVENT_BUTTON_CUMULATIVE, onButtonCumulative);

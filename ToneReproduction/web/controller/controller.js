@@ -21,7 +21,8 @@ Controller.prototype.init = function() {
 /************* apply histogram change, shadow, gamma, highlight *************/
 Controller.prototype.modifyGamma = function(value) {
    var info = model.getSelectedChannelInfo();
-   info.gamma = value; 
+   var v = value/255*2;
+   info.gamma = v; 
    this.applyLUT(info);
 }
 
