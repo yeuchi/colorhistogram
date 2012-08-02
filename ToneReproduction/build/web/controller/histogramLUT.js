@@ -3,16 +3,15 @@
  * and open the template in the editor.
  */
 
-var HistogramLUT = function(info) {
-   this.info = info;
-   this.init();
+var HistogramLUT = function() {
    this.modelEnum = new ModelEnum();
 }
 
-HistogramLUT.prototype.init = function() {
+HistogramLUT.prototype.init = function(info) {
+   this.info = info;
    this.lut = [];
-   for(var i=0; i<this.modelEnum.HISTOGRAM_LENGTH; i++) 
-      this.lut.push(0);
+   for(var i=0; i<this.modelEnum.HISTOGRAM_LENGTH; i++)  
+      this.lut.push(i);
 }
 
 HistogramLUT.prototype.apply = function(dataSrc, dataDes) {
@@ -21,11 +20,11 @@ HistogramLUT.prototype.apply = function(dataSrc, dataDes) {
    this.highlight();
     
    // apply look up table
-   var offset = info.pixelOffset;  
+   var offset = this.info.pixelOffset;  
    for (var y=0; y<model.imageHeight(); y++) {
 		var i = y*model.imageWidth()*4;			
 		for(var x=0; x<model.imageWidth(); x++) {
-         if(info.channel == this.modelEnum.CHANNEL_GRAY) {
+         if(this.info.channel == this.modelEnum.CHANNEL_GRAY) {
             dataDes.data[i+1] = this.lut[dataSrc.data[i+1]];
             dataDes.data[i+2] = this.lut[dataSrc.data[i+2]];
          }
@@ -37,18 +36,18 @@ HistogramLUT.prototype.apply = function(dataSrc, dataDes) {
 }
 
 // make them private, stick them in constructor
-HistogramLUT.prototype._gamma = function(value) {
+HistogramLUT.prototype.gamma = function(value) {
    if(1==this.info.gamma)
       return;
    
 }
 
-HistogramLUT.prototype._shadow = function(value) {
+HistogramLUT.prototype.shadow = function(value) {
    if(0==this.info.shadow)
       return;
 }
 
-HistogramLUT.prototype._highlight = function(value) {
+HistogramLUT.prototype.highlight = function(value) {
    if(255==this.info.highlight)
       return;
    

@@ -21,15 +21,24 @@ BarGraph.prototype.dispose = function() {
 }
 
 BarGraph.prototype.init = function() {
-
+   
+   var info = model.getSelectedChannelInfo();
+   $("#txtHighlight").val(info.highlight);
+   $("#txtGamma").val(info.gamma);
+   $("#txtShadow").val(info.shadow);
+   
+   this.onTextHighlight();
+   this.onTextGamma();
+   this.onTextShadow();
+   
    // bind event listeners
    $(".btnHighLight").bind("mouseup", this.onChangeHighLight);
    $(".btnGamma").bind("mouseup", this.onChangeGamma);
    $(".btnShadow").bind("mouseup", this.onChangeShadow);
    
-   $(".txtHighlight").bind("change", this.onTextHighlight);
-   $(".txtGamma").bind("change", this.onTextGamma);
-   $(".txtShadow").bind("change", this.onTextShadow);
+   $("#txtHighlight").bind("change", this.onTextHighlight);
+   $("#txtGamma").bind("change", this.onTextGamma);
+   $("#txtShadow").bind("change", this.onTextShadow);
 }
 
 BarGraph.prototype.render = function() {
@@ -105,7 +114,7 @@ BarGraph.prototype.onTextHighlight = function() {
 
 BarGraph.prototype.onTextGamma = function() {
    var value = txtBound("#txtGamma");
-   var v = parseInt(pos / 2 * 255);
+   var v = parseInt(value / 2 * 255);
    $(".btnGamma").css("left", v);
 }
 

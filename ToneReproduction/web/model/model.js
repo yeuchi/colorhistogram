@@ -68,6 +68,10 @@ Model.prototype.initImage = function(id, imgObj) {
    this.context.drawImage(imgObj, 0,0);
    this.dataSrc = this.context.getImageData(0,0,this.canvas.width, this.canvas.height);
    this.dataDes = this.context.createImageData(this.canvas.width, this.canvas.height);
+   
+   var len = this.imageHeight()*this.imageWidth()*4;
+   for(var i=0; i<len; i++) 
+      this.dataDes.data[i] = this.dataSrc.data[i];
 }
 
 Model.prototype.imageWidth = function() {

@@ -15,7 +15,7 @@ var Controller = function() {
 
 Controller.prototype.init = function() {
    this.modelEnum = new ModelEnum();
-   this.channelSelected = this.modelEnum.INDEX_GRAY;
+   this.lut = new HistogramLUT();
 }
 
 /************* apply histogram change, shadow, gamma, highlight *************/
@@ -46,8 +46,8 @@ Controller.prototype.equalize = function() {
 }
 
 Controller.prototype.applyLUT = function(info) {
-   var lut = new HistogramLUT(info);
-   lut.apply(model.dataSrc, model.dataDes);
+   this.lut.init(info);
+   this.lut.apply(model.dataSrc, model.dataDes);
    model.changeState(model.state);                                               // post state change for view to consume
 }
 
@@ -71,6 +71,9 @@ Controller.prototype.buildHistogram = function(index) {
    this.findShadow(model.listInfo[index]);
    this.findHighlight(model.listInfo[index]);
  
+   // initialize dataDes
+   var info = model.getSelectedChannelInfo();
+   this.applyLUT(info);
    model.changeState(this.declareHistogramState(index)); 
 }
 
