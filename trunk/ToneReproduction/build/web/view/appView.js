@@ -48,6 +48,7 @@ AppView.prototype._onChangeImage = function() {
    model.imageUrl = $("#combo").val();
    appView.loadImage(model.imageUrl);
    dispatchEvent(EVENT_COMBO_IMAGE);
+   $(".divDialog div").remove();
 }
 
 AppView.prototype._onBtnHistogram = function() {
