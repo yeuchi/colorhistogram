@@ -5,7 +5,6 @@ var DialogControl = function() {
 
 DialogControl.prototype.init = function() {
    $(".btnOK").bind("click", {pointer: this}, this.onHistogramOk)
-   $(".btnCancel").bind("click", {pointer: this}, this.onHistogramCancel); 
    $(".btnAuto").bind("click", this.onHistogramAuto);  
 
    this.initCombo();
@@ -44,7 +43,6 @@ DialogControl.prototype.dispose = function() {
    this.initCombo = null;
    this.onChangeChannel = null;
    
-   this.onHistogramCancel = null;
    this.onHistogramOk = null;
    
    this.getChangeChannelEvent = null;
@@ -63,15 +61,6 @@ DialogControl.prototype.onHistogramOk = function(event) {
    
    dispatchEvent(EVENT_BUTTON_HISTOGRAM_OK);
    $(".divDialog div").remove();
-}
-   
-DialogControl.prototype.onHistogramCancel = function(event) {
-   var ptr = event.data.pointer;
-   ptr.loadInfo("assets/thanks.json");
-   
-   dispatchEvent(EVENT_BUTTON_HISTOGRAM_CANCEL);
-   $(".divDialog div").remove();
-   
 }
 
 DialogControl.prototype.onHistogramAuto = function() {

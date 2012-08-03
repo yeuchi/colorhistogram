@@ -39,7 +39,6 @@ input {display: inline; padding: 0px 5px 5px 5px;}
 .divGraphContainer, .divControl {position: relative; display: inline-block; float: left;}
 .btnOK, .btnCancel, .btnAuto {width: 60px; padding: 5px 5px 5px 15px;}
 .btnOK {margin-top: 10px;}
-.btnCancel {margin: 5px 5px 5px 5px;}
 
 .bar {position:relative; float: left; display: inline-block;}
 .colorR {background-color: #F00;}
