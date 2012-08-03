@@ -49,6 +49,8 @@ $(document).ready(function() {
 /**************** Event listeners **************/
 
    $(document).bind(EVENT_IMAGE_LOAD_COMPLETE, onImageLoadComplete);
+   $(document).bind(EVENT_COMBO_IMAGE, onImageLoadComplete);
+   
    $(document).bind(EVENT_BUTTON_REVERT, onButtonRevert);
    
    /* histogram events */
