@@ -85,7 +85,7 @@ AppView.prototype.onStateChange = function() {
          this.render();
          
          $(".divDialog div").remove();
-         $(".divDialog").load("view/histogramGraph/histogram.html");
+         $(".divDialog").load("view/histogramGraph/histogram.html", this.onDialogLoad);
          break;
       
       case this.modelEnum.STATE_CUMULATIVE_RED:
@@ -94,10 +94,14 @@ AppView.prototype.onStateChange = function() {
       case this.modelEnum.STATE_CUMULATIVE_ALPHA:
       case this.modelEnum.STATE_CUMULATIVE_GRAY:
          $(".divDialog div").remove();
-         $(".divDialog").load("view/cumulativeGraph/cumulative.html");
+         $(".divDialog").load("view/cumulativeGraph/cumulative.html", this.onDialogLoad);
          break;
       default:
    }
+}
+
+AppView.prototype.onDialogLoad = function() {
+   $(".divDialog").animate({opacity:1}, 500);
 }
 
 AppView.prototype.render = function() {
