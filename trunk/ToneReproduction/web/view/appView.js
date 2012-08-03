@@ -40,7 +40,7 @@ AppView.prototype._onViewLoaded = function() {
    $("#combo").bind("change", appView._onChangeImage);
    
    appView.loadInfo("assets/intro.json");
-   model.imageUrl = "assets/images/BillnMarc.JPG";
+   model.imageUrl = "assets/images/horse.png";
    appView.loadImage(model.imageUrl);
 }
 
